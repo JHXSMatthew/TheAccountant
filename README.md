@@ -1,6 +1,12 @@
 # TheAccountant
 
-The software for seperating bills. I am going to use this with my new dormmates. It is designed to run in a safe local area network.
+The software for splitting bills. I am going to use this with my new dormmates. It is designed to run in a safe local area network.
+
+Create a transaction when someone paid a bill. 
+
+Create a transaction when someone paid the money they owned.
+
+Negative balance simply means you owned money to people with positive balance.
 
 ## Getting Started
 
@@ -14,7 +20,7 @@ MySQL + JRE8 + tomcat 8.5.11 to run this on your server
 
 ### Installing
 
-would be there in a week.
+would be there in a week. sql tables are not automatically created rightnow but would be there very soon.
 
 ## Authors
 

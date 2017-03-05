@@ -1,4 +1,3 @@
-<%@ page import="java.util.HashMap" %>
 <%@ page import="com.github.JHXSMatthew.DataCache" %><%--
   Created by IntelliJ IDEA.
   User: Matthew
@@ -21,7 +20,7 @@
 <div class="container">
   <div class = "page-header">
     <h1>The Accountant </h1>
-    <p class="lead">The bill separating software.</p>
+    <p class="lead">The bill splitting software.</p>
   </div>
 
   <div id="alerts">

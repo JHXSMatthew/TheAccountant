@@ -34,6 +34,17 @@ public class RecordsManager {
     public Transaction createNewTransaction(Transaction transaction) {
         MySQLConnection connection = new MySQLConnection();
         try {
+            connection.connect().prepareStatement("CREATE TABLE IF NOT EXISTS Records(" +
+                    "id int NOT NULL AUTO_INCREMENT," +
+                    "date varchar(11) NOT NULL," +
+                    "amount double(9,2) NOT NULL," +
+                    "payer varchar(255) NOT NULL," +
+                    "payee varchar(255)," +
+                    "ip varchar(255) NOT NULL," +
+                    "debitTo varchar(1024) ," +
+                    "memo varchar(1024) NOT NULL," +
+                    "PRIMARY KEY (id)" +
+                    ")");
             PreparedStatement statement = connection.connect()
                     .prepareStatement("INSERT INTO Records (date,amount,payer,ip,debitTo,memo) " +
                             "VALUES (?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);

@@ -34,8 +34,16 @@ public class EntityManager {
     private void init() {
         entities.clear();
         MySQLConnection connection = new MySQLConnection();
+
         try {
             Connection sqlConnection = connection.connect();
+            sqlConnection.prepareStatement("CREATE TABLE IF NOT EXISTS Entities " +
+                    "(" +
+                    "id int NOT NULL AUTO_INCREMENT ," +
+                    "name varchar(255) NOT NULL," +
+                    "PRIMARY KEY (id)" +
+                    ")").execute();
+
             PreparedStatement s = sqlConnection.prepareStatement("SELECT * FROM Entities");
             ResultSet set = s.executeQuery();
             while (set.next())

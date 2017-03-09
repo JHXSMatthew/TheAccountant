@@ -6,16 +6,16 @@ import org.json.simple.JSONObject;
  * Created by Matthew on 26/02/2017.
  */
 public class Transfer extends Record {
-    private String payee;
     protected final static String TYPE_NAME = "transfer";
+    private String payee;
 
 
-    public Transfer(int number, String date, String payer, double amount,String memo,String payee,String ip) {
-        super(number, date, payer,amount, memo,ip);
+    public Transfer(int number, String date, String payer, double amount, String memo, String payee, String ip) {
+        super(number, date, payer, amount, memo, ip);
         this.payee = payee;
     }
 
-    protected Transfer(JSONObject obj){
+    protected Transfer(JSONObject obj) {
         super(obj);
         payee = obj.get("payee").toString();
     }
@@ -27,10 +27,10 @@ public class Transfer extends Record {
 */
 
     @Override
-    public JSONObject toJSON(){
+    public JSONObject toJSON() {
         JSONObject obj = super.toJSON();
-        obj.put("payee",payee);
-        obj.put("type",TYPE_NAME);
+        obj.put("payee", payee);
+        obj.put("type", TYPE_NAME);
 
         return obj;
     }

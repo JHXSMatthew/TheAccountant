@@ -18,7 +18,8 @@
 
     <title>Sign in</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="css/signin.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
@@ -39,15 +40,15 @@
     </form>
     <script>
         $("#sub").click(function () {
-            $(this).attr("disabled",true);
-            $.post("",{
+            $(this).attr("disabled", true);
+            $.post("", {
                 password: $("#inputPassword").val()
-            },function (data) {
+            }, function (data) {
                 console.info(typeof(data));
                 data = JSON.parse(data);
-                if(data["res"] === "ok"){
+                if (data["res"] === "ok") {
                     location.href = "";
-                }else{
+                } else {
                     $('#alerts').children().alert("close");
                     $('#alerts').append(
                         '<div class="alert alert-warning alert-dismissible">' +

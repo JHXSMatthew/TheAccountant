@@ -23,8 +23,8 @@ import java.util.List;
 /**
  * Created by Matthew on 26/02/2017.
  */
-public class Handler extends HttpServlet{
-    public Handler(){
+public class Handler extends HttpServlet {
+    public Handler() {
         super();
 
     }
@@ -33,20 +33,20 @@ public class Handler extends HttpServlet{
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         HttpSession session = req.getSession();
-        if(session.getAttribute("login") == null){
+        if (session.getAttribute("login") == null) {
             req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
             return;
         }
 
         String[] entities = EntityManager.getInstance().getEntities();
-        for(String s : entities){
-            if(!RecordsManager.getInstance().getBalanceCache().containsKey(s)){
-                RecordsManager.getInstance().getBalanceCache().put(s,0.0);
+        for (String s : entities) {
+            if (!RecordsManager.getInstance().getBalanceCache().containsKey(s)) {
+                RecordsManager.getInstance().getBalanceCache().put(s, 0.0);
             }
         }
         req.setAttribute("entities", entities);
         req.setAttribute("balance", RecordsManager.getInstance().getBalanceCache());
-        req.getRequestDispatcher("/WEB-INF/index.jsp").forward(req,resp);
+        req.getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
 
     }
 
@@ -54,14 +54,14 @@ public class Handler extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        if(session.getAttribute("login") == null){
-            if(req.getParameter("password") != null){
-                if(req.getParameter("password").equals(Config.password)) {
+        if (session.getAttribute("login") == null) {
+            if (req.getParameter("password") != null) {
+                if (req.getParameter("password").equals(Config.password)) {
                     session.setAttribute("login", "true");
-                    setResponsePair(resp,1,"done","res","ok");
+                    setResponsePair(resp, 1, "done", "res", "ok");
                 }
             }
-        }else {
+        } else {
             RequestContainer container = new RequestContainer(req);
             switch (req.getParameter("type")) {
                 case "transfer":
@@ -133,14 +133,14 @@ public class Handler extends HttpServlet{
         }
     }
 
-    private void setResponsePair(HttpServletResponse resp, int status, String words,String ... pairsArguments){
+    private void setResponsePair(HttpServletResponse resp, int status, String words, String... pairsArguments) {
         JSONObject obj = new JSONObject();
-        obj.put("status",status);
-        obj.put("words",words);
-        if(pairsArguments != null && pairsArguments.length %2 == 0){
+        obj.put("status", status);
+        obj.put("words", words);
+        if (pairsArguments != null && pairsArguments.length % 2 == 0) {
             int index = 0;
-            while(index < pairsArguments.length)
-                obj.put(pairsArguments[index++],pairsArguments[index++]);
+            while (index < pairsArguments.length)
+                obj.put(pairsArguments[index++], pairsArguments[index++]);
         }
         try {
             resp.getWriter().write(obj.toJSONString());
@@ -149,11 +149,4 @@ public class Handler extends HttpServlet{
             e.printStackTrace();
         }
     }
-
-
-/*
-    private boolean recordCheck(){
-
-    }
-*/
 }

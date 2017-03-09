@@ -6,7 +6,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -15,22 +17,29 @@ import java.util.stream.Collectors;
 public class EntityManager {
     private static EntityManager instance;
 
-    private Map<Integer,String> entities;
+    private Map<Integer, String> entities;
 
-    public EntityManager(){
+    public EntityManager() {
         entities = new HashMap<>();
         init();
     }
 
-    private void init(){
+    public static EntityManager getInstance() {
+        if (instance == null) {
+            instance = new EntityManager();
+        }
+        return instance;
+    }
+
+    private void init() {
         entities.clear();
         MySQLConnection connection = new MySQLConnection();
         try {
             Connection sqlConnection = connection.connect();
             PreparedStatement s = sqlConnection.prepareStatement("SELECT * FROM Entities");
             ResultSet set = s.executeQuery();
-            while(set.next())
-                entities.put(set.getInt(1),set.getString(2));
+            while (set.next())
+                entities.put(set.getInt(1), set.getString(2));
             s.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -38,32 +47,25 @@ public class EntityManager {
         connection.disconnect();
     }
 
-    private void save(){
+    private void save() {
         //you don't save this, too dangerous to save!
     }
 
-    public String[] getEntities(){
+    public String[] getEntities() {
         return entities.values().toArray(new String[entities.size()]);
     }
 
-    public int getNumberByName(String name){
+    public int getNumberByName(String name) {
         try {
             return entities.entrySet()
                     .stream()
                     .filter(integerStringEntry -> Objects.equals(integerStringEntry.getValue(), name))
                     .map(Map.Entry::getKey)
                     .collect(Collectors.toList()).get(0);
-        }catch (Exception e){
+        } catch (Exception e) {
             return -1;
         }
 
-    }
-
-    public static EntityManager getInstance(){
-        if(instance == null){
-            instance = new EntityManager();
-        }
-        return instance;
     }
 
 

@@ -28,11 +28,11 @@ public class MySQLConnection {
         return properties;
     }
 
-    public Connection connect(){
-        if(connection == null){
+    public Connection connect() {
+        if (connection == null) {
             try {
                 Class.forName(DATABASE_DRIVER);
-                connection = DriverManager.getConnection(DATABASE_URL,getProperties());
+                connection = DriverManager.getConnection(DATABASE_URL, getProperties());
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (SQLException e) {
@@ -42,17 +42,16 @@ public class MySQLConnection {
         return connection;
     }
 
-    public void disconnect(){
-        if(connection != null){
-            try{
+    public void disconnect() {
+        if (connection != null) {
+            try {
                 connection.close();
                 connection = null;
-            }catch (SQLException e){
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
     }
-
 
 
 }

@@ -19,8 +19,24 @@ Java8 + Maven to compile this project
 MySQL + JRE8 + tomcat 8.5.11 to run this on your server
 
 ### Installing
+To install this software, you may have a little bit knowledge of SQL and be able to set up a tomcat server.
+Assume you already have a tomcat + MySQL server set up with correct SQL user privilege.
 
-would be there in a week. sql tables are not automatically created rightnow but would be there very soon.
+1.Download the source
+* do "git clone https://github.com/JHXSMatthew/TheAccountant"
+
+2.Modify database settings and compile
+* the database setting should be in "/main/java/com/github/JHXSMatthew/sql/MySQLConnection.java" you may edit it with
+with whatever text editor.
+* do "cd TheAccountant" then "maven install" to compile the source.
+
+3.upload .war to your tomcat server
+ * .war file should be in /target folder and you may rename it and upload to your tomcat webApps folder.
+ 
+4.??????
+
+5.profit
+
 
 ## Authors
 

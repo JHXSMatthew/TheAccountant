@@ -10,9 +10,9 @@ import java.util.Properties;
  */
 public class MySQLConnection {
     private static final String DATABASE_DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String DATABASE_URL = "jdbc:mysql://127.0.0.1:3306/web";
-    private static final String USERNAME = "admin";
-    private static final String PASSWORD = "admin";
+    private static final String DATABASE_URL = "jdbc:mysql://127.0.0.1:3306/web"; //the address replace web for your database name.
+    private static final String USERNAME = "admin"; // your database user
+    private static final String PASSWORD = "admin";//you database password
     private static final String MAX_POOL = "250"; // set your own limit
 
     private Connection connection;

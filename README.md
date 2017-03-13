@@ -27,7 +27,8 @@ Assume you already have a tomcat + MySQL server set up with correct SQL user pri
 
 2.Modify database settings and compile
 * the database setting should be in "/main/java/com/github/JHXSMatthew/sql/MySQLConnection.java" you may edit it with
-with whatever text editor.
+with whatever text editor.Also, do change the password in /main/java/com/github/JHXSMatthew/Config in order to login. 
+the default password is 626.
 * do "cd TheAccountant" then "maven install" to compile the source.
 
 3.upload .war to your tomcat server

@@ -151,6 +151,7 @@ function loadRecords(starting, end) {
             var table = document.getElementById("records_table_body");
             try {
                 var array = JSON.parse(data.records);
+                $("#records_table_body").empty();
                 for (var k in array) {
                     insertRecord(table, array[k]);
                 }

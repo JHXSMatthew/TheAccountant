@@ -46,6 +46,7 @@ public class Handler extends HttpServlet {
         }
         req.setAttribute("entities", entities);
         req.setAttribute("balance", RecordsManager.getInstance().getBalanceCache());
+        resp.setContentType("text/html;charset=UTF-8;pageEncoding=UTF-8");
         req.getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
 
     }
@@ -53,6 +54,7 @@ public class Handler extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         HttpSession session = req.getSession();
         if (session.getAttribute("login") == null) {
             if (req.getParameter("password") != null) {
@@ -142,11 +144,13 @@ public class Handler extends HttpServlet {
             while (index < pairsArguments.length)
                 obj.put(pairsArguments[index++], pairsArguments[index++]);
         }
+        resp.setContentType("text/html;charset=UTF-8;pageEncoding=UTF-8");
         try {
             resp.getWriter().write(obj.toJSONString());
             resp.getWriter().close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 }

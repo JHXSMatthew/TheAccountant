@@ -142,6 +142,9 @@ function updateBalance() {
 }
 
 function loadRecords(starting, end) {
+    $("#records_table_body").empty();
+    du = [];
+
     $.post("", {
         type: "records",
         start: starting,
@@ -151,10 +154,9 @@ function loadRecords(starting, end) {
             var table = document.getElementById("records_table_body");
             try {
                 var array = JSON.parse(data.records);
-                $("#records_table_body").empty();
-                for (var k in array) {
+                for (var k in array)
                     insertRecord(table, array[k]);
-                }
+
             } catch (err) {
 
             }
